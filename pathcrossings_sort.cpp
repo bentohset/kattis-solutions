@@ -9,20 +9,11 @@ double euDist(ll x1, ll y1, ll x2, ll y2) {		//calculate euclidian distance betw
 	ll x = x2 - x1;
 	ll y = y2 - y1;
 	double dist = sqrt(pow(x, 2) + pow(y, 2));
-	//cout << dist << endl;
 	return dist;
 }
 
 bool compareColumn(vector<ll>& v1, vector<ll>& v2) {		//compare last column
 	return v1[3] < v2[3];
-}
-
-bool compareColumn1(vector<ll>& v1, vector<ll>& v2) {		//compare first column
-	return v1[0] < v2[0];
-}
-
-bool compareColumn2(vector<ll>& v1, vector<ll>& v2) {		//compare second column
-	return v1[1] < v2[1];
 }
 
 bool compareColumn3(vector<ll>& v1, vector<ll>& v2) {
@@ -44,14 +35,7 @@ int main() {
 	}
 
 	sort(arr.begin(), arr.end(), compareColumn); //sort pings by time (last column)
-	//cout << "sorted!" << endl;
-	//for (int i = 0; i < N; i++) {		//print array for checking
-	//	for (int j = 0; j < 4; j++) {
-	//		cout << arr[i][j] << " ";
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+
 	ll limit = 0;
 	for (ll i = 1; i < N; i++) {					//if pairs cross paths, add to new array "pairings"
 		if (i - limit == 5) limit++;
@@ -60,7 +44,6 @@ int main() {
 				vector<ll>rows;
 				ll p1 = arr[i][0];
 				ll p2 = arr[j][0];
-				//cout << p1 << ' ' << p2 << endl;
 				if (p1 > p2) {
 					ll temp = p2;
 					p2 = p1;
@@ -79,7 +62,7 @@ int main() {
 	}
 	
 	sort(pairings.begin(), pairings.end(), compareColumn3);		//sort pairings
-	//sort(pairings.begin(), pairings.end(), compareColumn2);
+
 	pairings.erase(unique(pairings.begin(), pairings.end()), pairings.end());
 
 	cout << pairings.size() << endl;

@@ -31,47 +31,46 @@ private:
     int swap_id = i;
     if ((left(i) <= heap_size) && (A[i] < A[left(i)])) 
       swap_id = left(i);
-    if ((right(i) <= heap_size) && (A[swap_id] < A[right(i)])) // compare with right child, if exists
+    if ((right(i) <= heap_size) && (A[swap_id] < A[right(i)])) 
       swap_id = right(i);
-    if (swap_id != i) { // need to swap with the larger of the two children
-      swap(A[i], A[swap_id]); // swap downwards with the larger of the two children
-      shift_down(swap_id); // recurse, at most O(log n) steps to one of the bottom-most leaf
+    if (swap_id != i) { 
+      swap(A[i], A[swap_id]);
+      shift_down(swap_id); 
     }
   }
 
 public:
-  binary_heap() { // O(1)
-    A.push_back(T()); // remember to set index 0 to be 'dummy'
-    heap_size = 0; // an empty Binary Heap
+  binary_heap() {
+    A.push_back(T());
+    heap_size = 0; 
   }
 
-  ~binary_heap() { // O(n)
+  ~binary_heap() {
     A.clear();
   }
 
-  void push(T x) { // O(log n)
-    if (heap_size+1 >= (int)A.size()) // O(1)
-      A.push_back(T()); // enlarge the vector by one (internally, vector doubles its size) if needed, to avoid potential RTE below, O(1)
-    A[++heap_size] = x; // the only possible insertion point, O(1)
-    shift_up(heap_size); // shift upwards, O(log n) at worst
+  void push(T x) { 
+    if (heap_size+1 >= (int)A.size()) 
+      A.push_back(T());
+    A[++heap_size] = x; 
+    shift_up(heap_size); 
   }
 
-  void pop() { // O(log n)
-    if (empty()) return; // safeguard
-    swap(A[1], A[heap_size--]); // swap with the last existing leaf, O(1)
-    shift_down(1); // fix heap property downwards, O(log n) at worst
+  void pop() {
+    if (empty()) return; 
+    swap(A[1], A[heap_size--]);
+    shift_down(1); 
   }
 
-  T top() { // O(1)
-    return A[1]; // this is the root
+  T top() {
+    return A[1]; 
   }
 
-  bool empty() { // O(1)
-    return heap_size == 0; // the condition for an empty A
+  bool empty() {
+    return heap_size == 0;
   }
 
-  int size() { // O(1)
-    //assert(heap_size <= (int)A.size()); // should be true at all times
+  int size() { 
     return heap_size;
   }
   void findVerticesbiggerthan(T v, int x){
@@ -101,11 +100,6 @@ int main(){
     for (int i = elem; i > 0; i--){
         pq.push(i);
     }
-    /* while (!pq.empty()){
-        cout << pq.top() << ' ';
-        pq.pop();
-    } */
-    //pq.printHeap();
     int indx = 1;
     string letters; cin >> letters;
     for (char c: letters){

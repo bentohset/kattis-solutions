@@ -33,12 +33,9 @@ int main(){
                 auto it = pool.upper_bound(X);
                 if (it != pool.begin()) it--;
                 
-                //cout << "it=" << it->first << endl;
                 if (it==pool.end() || X < it->first) break;
                 X = X - it->first;
-                //cout << "x= " << X << endl;
                 gold = gold + pool[it->first].top();
-                //cout << "gold=" << gold << endl;
                 pool[it->first].pop();
                 if (pool[it->first].empty()) pool.erase(it);
             }

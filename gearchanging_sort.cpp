@@ -24,12 +24,9 @@ int main(){
     }
     bool ride = true;
     sort(ratios.begin(), ratios.end(), greater<double>());
-    /* for (int i=0; i< ratios.size();i++){
-        cout << ratios[i]<< endl;} */
 
     for (int i=0; i< ratios.size()-1;i++){
         if ((100.0*(ratios[i]-ratios[i+1])/ratios[i+1])>P) {
-            //out << 100.0*(ratios[i]-ratios[i+1])/ratios[i+1] << endl;
             ride = false;
         }
     }

@@ -19,7 +19,6 @@ int main(){
         stringstream ss(l);
         string token;   //token is assumption
         while (ss >> token && token!= "->"){
-            //cout << token << endl;
             if (proven.find(token) == proven.end()){
                 cout << line-1 << endl;
                 return 0;
@@ -27,7 +26,6 @@ int main(){
         }
         string conclusion;
         ss >> conclusion;
-        //cout <<"c= " << conclusion << endl;
         proven.insert(conclusion);
     }
     cout << "correct" << endl;

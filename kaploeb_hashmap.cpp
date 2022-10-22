@@ -14,8 +14,6 @@ typedef long long ll;
 bool sortbyrank(const pair<int,int>& a, const pair<int,int>& b){
     if(get<1>(a) != get<1>(b)) 
             return get<1>(a) < get<1>(b);
-    /* if(get<2>(a) != get<2>(b))
-        return get<2>(a) < get<2>(b); */
     return get<0>(a) < get<0>(b);
 }
 
@@ -29,12 +27,9 @@ int main(){
         string time; cin>>time;
         lapsDone[si]++;                                                             //store frequency of lap timings as no. of laps done in hashmap
         int minutes = (time[0]-'0')*10+(time[1]-'0');                               //convert minutes into integer
-        //cout << "min1=" << time[0] << " min2=" << time[1] << " totalmin=" << minutes << endl;
         int seconds = ((time[3]-'0')*10+(time[4]-'0')) + minutes*60;                //convert seconds into integer and minutes in seconds
-        //cout << "sec1=" << time[3] << "sec2=" << time[4] << "totalsec=" << seconds << endl;
         lapTimes[si] += seconds;                                                    //store total time in seconds to hashmap
     }
-    //cout << lapTimes[2];
     vector<pair<int,int>> pairs;                       //vector of pair<start no., lap time>
     for (auto kv: lapsDone){
         if (kv.second == k)
