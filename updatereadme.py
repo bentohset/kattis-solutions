@@ -3,10 +3,18 @@
 
 import os
 
-def clearReadMe():
-    return 1
-def addReadMe():
-    return 1
+def create_readme(readme_file):
+    pre = """# Kattis Solutions
+Some of my solutions to Kattis problems in C++
+## Problems
+| Folder |
+|--------|
+
+"""
+    with open(readme_file, 'w') as f:
+        f.truncate(0)
+        f.write(pre)
+    print("Successfully cleared readme")
 
 def urlify(s):
     s = s.strip()
@@ -31,11 +39,13 @@ for dirpath, dirnames, filenames in os.walk(src_folder):
 # sort the list of subfolders
 subfolders.sort()
 
+create_readme(readme_file)
+
 # Update the README file with the sorted list of subfolders
 with open(readme_file, 'r') as f:
     readme = f.read()
 
-table_start = readme.index("| Folder | Description |")
+table_start = readme.index("| Folder |")
 table_end = readme.index("\n\n", table_start)
 if table_end == -1:
     table_end = len(readme)
@@ -46,7 +56,7 @@ updated_table = table
 
 for subfolder in subfolders:
     url = urlify(subfolder)
-    updated_table += f"\n| [{subfolder}](https://github.com/bentohset/kattis-solutions/tree/main/src/{url}) | Description of {subfolder} goes here |"
+    updated_table += f"\n| [{subfolder}](https://github.com/bentohset/kattis-solutions/tree/main/src/{url}) |"
 
 updated_readme = readme[:table_start] + updated_table + readme[table_end:]
 
