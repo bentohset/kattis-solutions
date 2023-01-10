@@ -1,4 +1,17 @@
+# This python script scans all folders in /src directory and sorts them in alphabetical order
+# then updates the readme.md table with folder name and link to the corresponding file
+
 import os
+
+def clearReadMe():
+    return 1
+def addReadMe():
+    return 1
+
+def urlify(s):
+    s = s.strip()
+    s = s.replace(" ", "%20")
+    return s
 
 # The name of the folder that contains the folders to be scanned
 src_folder = 'src'
@@ -32,7 +45,8 @@ table = readme[table_start:table_end]
 updated_table = table
 
 for subfolder in subfolders:
-    updated_table += f"\n| {subfolder} | Description of {subfolder} goes here |"
+    url = urlify(subfolder)
+    updated_table += f"\n| [{subfolder}](https://github.com/bentohset/kattis-solutions/tree/main/src/{url}) | Description of {subfolder} goes here |"
 
 updated_readme = readme[:table_start] + updated_table + readme[table_end:]
 
